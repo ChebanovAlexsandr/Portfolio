@@ -1,0 +1,417 @@
+{
+	"info": {
+		"_postman_id": "4fa831df-73c8-40fd-b8b3-d3a4f3aba6fe",
+		"name": "Тестовое задание для сайта dummyapi.io",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26809176"
+	},
+	"item": [
+		{
+			"name": "Получение списка пользователей",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "app-id",
+						"value": "64ABD7E0863720427C6C448F",
+						"type": "text"
+					},
+					{
+						"key": "place_id",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/user",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Создание 2 пользователя с одинаковым электронным адресом",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {",
+							"  pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Id is a non-empty string\", function () {",
+							"  const responseData = pm.response.json();",
+							"  ",
+							"  pm.expect(responseData).to.be.an('object');",
+							"  pm.expect(responseData.id).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Email is in a valid format\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData.email).to.exist;",
+							"    pm.expect(responseData.email).to.match(/^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$/, \"Email is not in a valid format\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Phone number is in a valid format\", function () {",
+							"  const responseData = pm.response.json();",
+							"  ",
+							"  pm.expect(responseData.phone).to.match(/^\\+\\d{1,3}\\s\\d{1,14}$/);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "app-id",
+						"value": "64ABD7E0863720427C6C448F",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"title\": \"mr\",\r\n\"firstName\": \"Tom\",\r\n\"lastName\": \"Holland\",\r\n\"gender\": \"male\",\r\n\"email\": \"to_spider7@gmail.com\",\r\n\"dateOfBirth\": \"11/13/2003\",\r\n\"phone\": \"+16536720017\",\r\n\"picture\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREg2ddueqnJphFAlr4AvAAexsP1XE-01gQULmYGOD2Rv4ZNl-GQwYLCFVVTlTwhACbvLU&usqp=CAU\",\r\n\"location\": \r\n    {\r\n    \"street\": \"Central Park\",\r\n    \"city\": \"New York\",\r\n    \"state\": \"New York\",\r\n    \"country\": \"USA\",\r\n    \"timezone\": \"+7:00\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/user/create",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"user",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Создание пользователя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {",
+							"  pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Id is a non-empty string\", function () {",
+							"  const responseData = pm.response.json();",
+							"  ",
+							"  pm.expect(responseData).to.be.an('object');",
+							"  pm.expect(responseData.id).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Email is in a valid format\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData.email).to.exist;",
+							"    pm.expect(responseData.email).to.match(/^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$/, \"Email is not in a valid format\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Phone number is in a valid format\", function () {",
+							"  const responseData = pm.response.json();",
+							"  ",
+							"  pm.expect(responseData.phone).to.match(/^\\+\\d{1,3}\\s\\d{1,14}$/);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "app-id",
+						"value": "64ABD7E0863720427C6C448F",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"title\": \"mr\",\r\n\"firstName\": \"Andrei\",\r\n\"lastName\": \"Makorevich\",\r\n\"gender\": \"male\",\r\n\"email\": \"to_spider@gmail.com\",\r\n\"dateOfBirth\": \"11/13/2003\",\r\n\"phone\": \"+16536720017\",\r\n\"picture\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREg2ddueqnJphFAlr4AvAAexsP1XE-01gQULmYGOD2Rv4ZNl-GQwYLCFVVTlTwhACbvLU&usqp=CAU\",\r\n\"location\": \r\n    {\r\n    \"street\": \"Central Park\",\r\n    \"city\": \"New York\",\r\n    \"state\": \"New York\",\r\n    \"country\": \"USA\",\r\n    \"timezone\": \"+7:00\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/user/create",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"user",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Проверка созданного пользователя",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "apikey"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "app-id",
+						"value": "64ABD7E0863720427C6C448F",
+						"type": "text"
+					},
+					{
+						"key": "place_id",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"title\": \"mr\",\r\n\"firstName\": \"Tom\",\r\n\"lastName\": \"Holland\",\r\n\"gender\": \"male\",\r\n\"email\": \"to_spider7@gmail.com\",\r\n\"dateOfBirth\": \"11/13/2003\",\r\n\"phone\": \"+16536720017\",\r\n\"picture\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREg2ddueqnJphFAlr4AvAAexsP1XE-01gQULmYGOD2Rv4ZNl-GQwYLCFVVTlTwhACbvLU&usqp=CAU\",\r\n\"location\": \r\n    {\r\n    \"street\": \"Central Park\",\r\n    \"city\": \"New York\",\r\n    \"state\": \"New York\",\r\n    \"country\": \"USA\",\r\n    \"timezone\": \"+7:00\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/user/64d23c2cc7d85744e22d23ee",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"user",
+						"64d23c2cc7d85744e22d23ee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Обновление пользователя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"The id should be a non-empty string\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.id).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Email is in a valid email format\", function () {",
+							"  const responseData = pm.response.json();",
+							"  ",
+							"  pm.expect(responseData.email).to.match(/^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$/);",
+							"});",
+							"",
+							"",
+							"pm.test(\"dateOfBirth is in a valid date format\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.dateOfBirth).to.match(/^\\d{4}-\\d{2}-\\d{2}$/, \"dateOfBirth should be in the format 'YYYY-MM-DD'\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "app-id",
+						"value": "64ABD7E0863720427C6C448F",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"64d23f52c7d857ea142d2627\",\r\n    \"title\": \"mr\",\r\n    \"firstName\": \"Oleg\",\r\n    \"lastName\": \"Gazmanov\",\r\n    \"picture\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREg2ddueqnJphFAlr4AvAAexsP1XE-01gQULmYGOD2Rv4ZNl-GQwYLCFVVTlTwhACbvLU&usqp=CAU\",\r\n    \"gender\": \"male\",\r\n    \"email\": \"iosi_f@gmail.com\",\r\n    \"dateOfBirth\": \"2003-11-13T00:00:00.000Z\",\r\n    \"phone\": \"+16536720017\",\r\n    \"location\": {\r\n        \"street\": \"Moscow\",\r\n        \"city\": \"Birobidzhan\",\r\n        \"state\": \"New York\",\r\n        \"country\": \"USA\",\r\n        \"timezone\": \"+7:00\"\r\n    },\r\n    \"registerDate\": \"2023-08-08T13:12:50.419Z\",\r\n    \"updatedDate\": \"2023-08-08T13:12:50.419Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/user/64d23f52c7d857ea142d2627",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"user",
+						"64d23f52c7d857ea142d2627"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Проверка изменения электронной почты",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "apikey"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "app-id",
+						"value": "64ABD7E0863720427C6C448F",
+						"type": "text"
+					},
+					{
+						"key": "place_id",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"title\": \"mr\",\r\n\"firstName\": \"Tom\",\r\n\"lastName\": \"Holland\",\r\n\"gender\": \"male\",\r\n\"email\": \"to_spider7@gmail.com\",\r\n\"dateOfBirth\": \"11/13/2003\",\r\n\"phone\": \"+16536720017\",\r\n\"picture\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREg2ddueqnJphFAlr4AvAAexsP1XE-01gQULmYGOD2Rv4ZNl-GQwYLCFVVTlTwhACbvLU&usqp=CAU\",\r\n\"location\": \r\n    {\r\n    \"street\": \"Central Park\",\r\n    \"city\": \"New York\",\r\n    \"state\": \"New York\",\r\n    \"country\": \"USA\",\r\n    \"timezone\": \"+7:00\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/user/64d23f52c7d857ea142d2627",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"user",
+						"64d23f52c7d857ea142d2627"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Удаление пользователя",
+			"request": {
+				"auth": {
+					"type": "apikey"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "app-id",
+						"value": "64ABD7E0863720427C6C448F",
+						"type": "text"
+					},
+					{
+						"key": "place_id",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/user/64d23f52c7d857ea142d2627",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"user",
+						"64d23f52c7d857ea142d2627"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Запрос удаленного пользователя",
+			"request": {
+				"auth": {
+					"type": "apikey"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "app-id",
+						"value": "64ABD7E0863720427C6C448F",
+						"type": "text"
+					},
+					{
+						"key": "place_id",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/user/64d23f52c7d857ea142d2627",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"user",
+						"64d23f52c7d857ea142d2627"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "https://dummyapi.io/data/v1"
+		}
+	]
+}
